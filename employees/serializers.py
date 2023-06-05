@@ -3,11 +3,6 @@ from .models import Employee, LeaveRequest
 from django.contrib.auth import get_user_model
 
 
-class LoginSerializer(serializers.Serializer):  # Login API
-    email = serializers.EmailField()
-    password = serializers.CharField()
-
-
 class EmployeeCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -40,7 +35,9 @@ class LeaveRequestSerializerForAdmin(serializers.ModelSerializer):
 
 
 class EmployeeLeaveRequestSerializer(serializers.ModelSerializer):
-    employee = serializers.HiddenField(default = serializers.CurrentUserDefault())
+    employee = serializers.HiddenField(
+        default=serializers.CurrentUserDefault())
+
     class Meta:
         model = LeaveRequest
         exclude = ['is_approved']
