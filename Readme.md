@@ -17,6 +17,7 @@ def get(self, request):
     serializer = EmployeeListSerializer(employees, many=True)
     return Response(serializer.data)
 ```
+![](photos/createEmployee.png)
 
 ### Employee Detail, Update, Delete API
 
@@ -28,7 +29,7 @@ class EmployeeDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = get_user_model().objects.all()
     serializer_class = EmployeeCreateSerializer
 ```
-
+![](photos/DetailDeleteUpdate.png)
 ### Employee Create API
 
 This method is done by using **CreateAPIView** which is also imported from _Generic Class Based API Views_. It requires queryset and serializer*class (\_same as in Deatil, Update, Delete*)
@@ -89,6 +90,7 @@ class EmployeeLeaveRequestCreateView(generics.ListCreateAPIView):
     def get_queryset(self):
         return LeaveRequest.objects.filter(employee = self.request.user)
 ```
+![](photos/ELRQ.png)
 
 ## Create Leave Reuqest
 

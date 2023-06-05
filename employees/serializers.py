@@ -40,14 +40,7 @@ class LeaveRequestSerializerForAdmin(serializers.ModelSerializer):
 
 
 class EmployeeLeaveRequestSerializer(serializers.ModelSerializer):
-
+    employee = serializers.HiddenField(default = serializers.CurrentUserDefault())
     class Meta:
         model = LeaveRequest
         exclude = ['is_approved']
-
-    employee = serializers.PrimaryKeyRelatedField(
-        read_only=True, default=serializers.CurrentUserDefault())
-
-    def create(self, validated_data):
-        validated_data['employee'] = self.context['request'].user
-        return LeaveRequest.objects.create(**validated_data)
