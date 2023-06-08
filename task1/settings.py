@@ -133,5 +133,7 @@ LOGOUT_REDIRECT_URL = 'home'
 AUTH_USER_MODEL = 'employees.Employee'
 
 REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend', 
+                                'rest_framework.filters.OrderingFilter',
+                                'rest_framework.filters.SearchFilter',],
 }
